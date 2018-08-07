@@ -29,7 +29,7 @@ if __name__ == '__main__':
         # c_temp = sensor.readTempC()
         # f_temp = c_to_f(c_temp)
 
-        f_temp = get_probe_temperature()
+        f_temp = get_probe_temperature(sensor)
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
         current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)"
