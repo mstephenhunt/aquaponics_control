@@ -5,10 +5,13 @@ from datetime import datetime
 from pytz import timezone
 
 class TempLogger:
-    def __init__ (self):
+    def __init__ (self, logging_period):
         __clk_pin = 17
         __cs_pin = 27
         __do_pin = 22
+
+        # logging period is provided in seconds
+        self.logging_period = logging_period
 
         self.sensor = MAX31855.MAX31855(__clk_pin, __cs_pin, __do_pin)
 
@@ -41,6 +44,9 @@ class TempLogger:
         current_reading = "{ \"time\": " + formatted_timestamp + ",\"probe\": " + str(probe_temp) + ",\"ambient\": " + str(ambient_temp) + "}\n"
 
         return current_reading
+
+
+
 
 
 # eastern = timezone('US/Eastern')
