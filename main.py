@@ -31,16 +31,19 @@ if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
     log_file = open("temp_log.txt", "w")
 
-    while (True):
-        probe_temp = get_probe_temperature(sensor)
-        ambient_temp = get_ambient_temperature(sensor)
+    try:
+        while (True):
+            probe_temp = get_probe_temperature(sensor)
+            ambient_temp = get_ambient_temperature(sensor)
 
-        formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-        current_reading = "{ \n\t\"time\": " + formatted_timestamp + ",\n\t\"probe\": " + str(probe_temp) + ",\n\t\"ambient\": " + str(ambient_temp) + "\n}\n"
+            formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
+            current_reading = "{ \n\t\"time\": " + formatted_timestamp + ",\n\t\"probe\": " + str(probe_temp) + ",\n\t\"ambient\": " + str(ambient_temp) + "\n}\n"
 
-        print(current_reading)
+            print(current_reading)
 
-        log_file.write(current_reading)
+            log_file.write(current_reading)
 
 
-        time.sleep(0.25)
+            time.sleep(0.25)
+    except KeyboardInterrupt:
+        log_file.close()
