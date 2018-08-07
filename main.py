@@ -16,11 +16,16 @@ def c_to_f(c):
 
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
+    log_file = open("temp_log.txt", "w")
 
     while (True):
         c_temp = sensor.readTempC()
         f_temp = c_to_f(c_temp)
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-        print("[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)")
+        current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)"
+
+        print(current_reading)
+        # log_file.write("[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)")
+
         time.sleep(0.25)
