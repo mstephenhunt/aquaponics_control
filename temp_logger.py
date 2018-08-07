@@ -13,6 +13,10 @@ class TempLogger:
         self.sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
 
 
+    def c_to_f(c):
+        return c * 9.0 / 5.0 + 32.0
+
+
     def get_probe_temperature (sensor):
         c_probe_temp = sensor.readTempC()
         f_probe_temp = c_to_f(c_probe_temp)
