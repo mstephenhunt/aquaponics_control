@@ -17,14 +17,14 @@ class TempLogger:
         return c * 9.0 / 5.0 + 32.0
 
 
-    def get_probe_temperature ():
+    def get_probe_temperature (self):
         c_probe_temp = self.sensor.readTempC()
         f_probe_temp = c_to_f(c_probe_temp)
 
         return f_probe_temp
 
 
-    def get_ambient_temperature ():
+    def get_ambient_temperature (self):
         c_ambient_temp = self.sensor.readInternalC()
         f_ambient_temp = c_to_f(c_ambient_temp)
 
