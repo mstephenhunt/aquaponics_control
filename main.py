@@ -1,6 +1,7 @@
 import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MAX31855.MAX31855 as MAX31855
+import datetime
 
 clk_pin = 17
 cs_pin = 27
@@ -17,6 +18,6 @@ if __name__ == '__main__':
     while (True):
         c_temp = sensor.readTempC()
         f_temp = c_to_f(c_temp)
-
-        print(str(f_temp) + " F")
+        
+        print(datetime.datetime.now() + str(f_temp) + " F")
         time.sleep(0.25)
