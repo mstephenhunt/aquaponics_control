@@ -29,7 +29,7 @@ def get_ambient_temperature (sensor):
 
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
-    log_file = open("temp_log.txt", "w")
+    log_file = open("temp_log.txt", "a")
 
     try:
         while (True):
