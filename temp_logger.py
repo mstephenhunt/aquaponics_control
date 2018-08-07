@@ -9,7 +9,7 @@ class TempLogger:
         __clk_pin = 17
         __cs_pin = 27
         __do_pin = 22
-        
+
         self.sensor = MAX31855.MAX31855(__clk_pin, __cs_pin, __do_pin)
 
 
@@ -29,6 +29,18 @@ class TempLogger:
         f_ambient_temp = self.c_to_f(c_ambient_temp)
 
         return f_ambient_temp
+
+
+    def get_temperature_readings (self):
+        probe_temp = self.__get_probe_temperature()
+        ambient_temp = self.__get_ambient_temperature()
+
+
+        eastern = timezone('US/Eastern')
+        formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
+        current_reading = "{ \"time\": " + formatted_timestamp + ",\"probe\": " + str(probe_temp) + ",\"ambient\": " + str(ambient_temp) + "}\n"
+
+        return current_reading
 
 
 # eastern = timezone('US/Eastern')
