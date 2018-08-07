@@ -26,17 +26,11 @@ def get_ambient_temperature (sensor):
     f_ambient_temp = c_to_f(c_ambient_temp)
 
     return f_ambient_temp
-
-
-def append_to_log (log_file, entry_to_add):
-    # the log should have an array of objs in array named temperature_readings
-    print(log_file.read(20))
+    
 
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
     log_file = open("temp_log.py", "a+")
-
-    append_to_log(log_file, "dummy")
 
     try:
         while (True):
@@ -48,7 +42,7 @@ if __name__ == '__main__':
 
             print(current_reading)
 
-            # log_file.write(current_reading)
+            log_file.write(current_reading)
 
 
             time.sleep(0.25)
