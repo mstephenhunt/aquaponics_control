@@ -14,16 +14,22 @@ def c_to_f(c):
     return c * 9.0 / 5.0 + 32.0
 
 
+def get_probe_temperature (sensor):
+    c_probe_temp = sensor.readTempC()
+    f_probe_temp = c_to_f(c_probe_temp)
+
+    return f_probe_temp
+
+
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
     log_file = open("temp_log.txt", "w")
 
     while (True):
-        internal = sensor.readInternalC()
-        c_temp = sensor.readTempC()
-        f_temp = c_to_f(c_temp)
+        # c_temp = sensor.readTempC()
+        # f_temp = c_to_f(c_temp)
 
-        print("Internal: " + str(c_to_f(internal)))
+        f_temp = get_probe_temperature()
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
         current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)"
