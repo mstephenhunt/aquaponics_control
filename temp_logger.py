@@ -46,7 +46,13 @@ class TempLogger:
         return current_reading
 
 
+    def log_temperature (self):
+        log_file = open("temp_log.txt", "a+")
 
+        while(True):
+            current_reading = self.get_temperature_readings()
+            log_file.write(current_reading)
+            time.sleep(self.logging_period)
 
 
 # eastern = timezone('US/Eastern')
