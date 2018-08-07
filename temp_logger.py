@@ -13,7 +13,7 @@ class TempLogger:
         self.sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
 
 
-    def c_to_f(c):
+    def c_to_f (self, c):
         return c * 9.0 / 5.0 + 32.0
 
 
