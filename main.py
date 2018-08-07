@@ -42,4 +42,5 @@ if __name__ == '__main__':
 
         log_file.write(current_reading)
 
+
         time.sleep(0.25)
