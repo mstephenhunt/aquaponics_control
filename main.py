@@ -26,6 +26,6 @@ if __name__ == '__main__':
         current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)"
 
         print(current_reading)
-        # log_file.write("[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)")
+        log_file.write("[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)")
 
         time.sleep(0.25)
