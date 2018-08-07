@@ -18,6 +18,6 @@ if __name__ == '__main__':
     while (True):
         c_temp = sensor.readTempC()
         f_temp = c_to_f(c_temp)
-        
-        print(datetime.datetime.now() + str(f_temp) + " F")
+
+        print("[" + str(datetime.datetime.now()) + "] " + str(f_temp) + " F")
         time.sleep(0.25)
