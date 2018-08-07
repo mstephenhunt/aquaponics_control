@@ -5,26 +5,26 @@ from datetime import datetime
 from pytz import timezone
 
 class TempLogger:
+    __clk_pin = 17
+    __cs_pin = 27
+    __do_pin = 22
+
     def __init__ (self):
-        clk_pin = 17
-        cs_pin = 27
-        do_pin = 22
-
-        self.sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
+        self.sensor = MAX31855.MAX31855(__clk_pin, __cs_pin, __do_pin)
 
 
-    def c_to_f (self, c):
+    def __c_to_f (self, c):
         return c * 9.0 / 5.0 + 32.0
 
 
-    def get_probe_temperature (self):
+    def __get_probe_temperature (self):
         c_probe_temp = self.sensor.readTempC()
         f_probe_temp = self.c_to_f(c_probe_temp)
 
         return f_probe_temp
 
 
-    def get_ambient_temperature (self):
+    def __get_ambient_temperature (self):
         c_ambient_temp = self.sensor.readInternalC()
         f_ambient_temp = self.c_to_f(c_ambient_temp)
 
