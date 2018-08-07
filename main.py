@@ -26,11 +26,11 @@ def get_ambient_temperature (sensor):
     f_ambient_temp = c_to_f(c_ambient_temp)
 
     return f_ambient_temp
-    
+
 
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
-    log_file = open("temp_log.py", "a+")
+    log_file = open("temp_log.txt", "a+")
 
     try:
         while (True):
@@ -38,7 +38,7 @@ if __name__ == '__main__':
             ambient_temp = get_ambient_temperature(sensor)
 
             formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-            current_reading = "{ \n\t\"time\": " + formatted_timestamp + ",\n\t\"probe\": " + str(probe_temp) + ",\n\t\"ambient\": " + str(ambient_temp) + "\n}\n"
+            current_reading = "{ \"time\": " + formatted_timestamp + ",\"probe\": " + str(probe_temp) + ",\"ambient\": " + str(ambient_temp) + "}\n"
 
             print(current_reading)
 
