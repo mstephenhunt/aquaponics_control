@@ -19,8 +19,11 @@ if __name__ == '__main__':
     log_file = open("temp_log.txt", "w")
 
     while (True):
+        internal = sensor.readInternalC()
         c_temp = sensor.readTempC()
         f_temp = c_to_f(c_temp)
+
+        print("Internal: " + str(c_to_f(internal)))
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
         current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F (" + str(c_temp) + " C)"
