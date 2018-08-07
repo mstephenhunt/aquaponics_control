@@ -5,11 +5,11 @@ from datetime import datetime
 from pytz import timezone
 
 class TempLogger:
-    __clk_pin = 17
-    __cs_pin = 27
-    __do_pin = 22
-
     def __init__ (self):
+        __clk_pin = 17
+        __cs_pin = 27
+        __do_pin = 22
+        
         self.sensor = MAX31855.MAX31855(__clk_pin, __cs_pin, __do_pin)
 
 
