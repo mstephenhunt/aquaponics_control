@@ -21,19 +21,25 @@ def get_probe_temperature (sensor):
     return f_probe_temp
 
 
+def get_ambient_temperature (sensor):
+    c_ambient_temp = sensor.readInternalC()
+    f_ambient_temp = c_to_f(c_ambient_temp)
+
+    return f_ambient_temp
+
 if __name__ == '__main__':
     sensor = MAX31855.MAX31855(clk_pin, cs_pin, do_pin)
     log_file = open("temp_log.txt", "w")
 
     while (True):
-        # f_temp = c_to_f(c_temp)
-
-        f_temp = get_probe_temperature(sensor)
+        probe_temp = get_probe_temperature(sensor)
+        ambient_temp = get_ambient_temperature(sensor)
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-        current_reading = "[" + formatted_timestamp + "] " + str(f_temp) + " F"
-
+        current_reading = "{ \"time\": \n\t" + formatted_timestamp + ", \n\t \"probe\": " + probe_temp + "\n}"
+        
         print(current_reading)
-        log_file.write("[" + formatted_timestamp + "] " + str(f_temp) + " F (")
+
+        # log_file.write("[" + formatted_timestamp + "] " + str(f_temp) + " F (")
 
         time.sleep(0.25)
