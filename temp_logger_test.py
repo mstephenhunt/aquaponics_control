@@ -1,3 +1,4 @@
-import temp_logger as temp_logger
+import temp_logger as TempLogger
 
-temp_logger.get_probe_temperature()
+temperature_logger = TempLogger()
+print(temperature_logger.get_probe_temperature())
