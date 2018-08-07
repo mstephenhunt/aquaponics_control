@@ -36,7 +36,7 @@ if __name__ == '__main__':
         ambient_temp = get_ambient_temperature(sensor)
 
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-        current_reading = "{ \n\t\"time\": " + formatted_timestamp + ", \n\t \"probe\": " + str(probe_temp) + "\n}"
+        current_reading = "{ \n\t\"time\": " + formatted_timestamp + ",\n\t \"probe\": " + str(probe_temp) + "\n}"
 
         print(current_reading)
 
