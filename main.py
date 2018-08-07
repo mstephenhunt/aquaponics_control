@@ -18,5 +18,5 @@ if __name__ == '__main__':
         c_temp = sensor.readTempC()
         f_temp = c_to_f(c_temp)
 
-        print(f_temp + " F")
+        print(str(f_temp) + " F")
         time.sleep(0.1)
