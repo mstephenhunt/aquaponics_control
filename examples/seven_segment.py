@@ -5,6 +5,8 @@ display = SevenSegment.SevenSegment()
 
 display.begin()
 
+display.setBrightness(15)
+
 iterator = 0
 while (True):
     iterator += 1
