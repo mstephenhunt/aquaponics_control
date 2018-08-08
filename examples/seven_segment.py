@@ -17,7 +17,7 @@ while (True):
     display.clear()
 
     # Print a floating point number to the display.
-    display.print_number_str('1111')
+    display.print_number_str(display_nums)
 
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
