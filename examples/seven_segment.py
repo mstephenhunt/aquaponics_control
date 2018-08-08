@@ -5,7 +5,14 @@ display = SevenSegment.SevenSegment()
 
 display.begin()
 
-for x in range (0, 5):
+iterator = 0
+while (True):
+    iterator += 1
+    iterator %= 10
+
+    iterator_as_str = str(iterator)
+    display_nums = iterator_as_str + iterator_as_str + iterator_as_str + iterator_as_str
+
     # Clear the display buffer.
     display.clear()
 
