@@ -50,7 +50,8 @@ class SevenSegmentTemp:
 
         self.display.clear()
 
-        current_chars = []
+        # Initialize to all blank
+        current_chars = [0x00, 0x00, 0x00, 0x00]
         for hex in hex_message:
             current_chars.append(hex)
 
