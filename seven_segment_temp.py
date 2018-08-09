@@ -56,7 +56,7 @@ class SevenSegmentTemp:
             current_chars.append(hex)
 
             if (len(current_chars) > 4):
-                current_chars.pop[0]
+                current_chars.pop(0)
 
             self.display.set_digit_raw(0, current_chars[0])
             self.display.set_digit_raw(1, current_chars[1])
