@@ -46,11 +46,22 @@ class SevenSegmentTemp:
         # that it goes fully off screen when finished
         message_with_spaces = message + '    '
 
-        return self.__convert_message_to_digit_values(message_with_spaces)
-        # for char in message_with_spaces:
-        #     current_chars.append(char)
+        hex_message = self.__convert_message_to_digit_values(message_with_spaces)
 
-        #     if (len(current_chars) > 4):
-        #         current_chars.pop[0]
+        self.display.clear()
 
-        #     self.display
+        current_chars = []
+        for hex in hex_message:
+            current_chars.append(hex)
+
+            if (len(current_chars) > 4):
+                current_chars.pop[0]
+
+            self.display.set_digit_raw(0, current_chars[0])
+            self.display.set_digit_raw(1, current_chars[1])
+            self.display.set_digit_raw(2, current_chars[2])
+            self.display.set_digit_raw(3, current_chars[3])
+
+            self.display.write_display()
+            time.sleep(0.5)
+
