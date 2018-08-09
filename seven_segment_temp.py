@@ -3,7 +3,7 @@ from Adafruit_LED_Backpack import SevenSegment
 
 DIGIT_VALUES = SevenSegment.DIGIT_VALUES
 DIGIT_VALUES['U'] = 0x3e # 62
-DIGIT_VALUES['T'] = 0x31 # 49
+DIGIT_VALUES['T'] = 0x78 # 120
 
 class SevenSegmentTemp:
     def __init__ (self):
