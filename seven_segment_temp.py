@@ -7,7 +7,7 @@ class SevenSegmentTemp:
 
     # This only accepts ints that have a length <= 3. The 
     # fourth segment on the display shows the letter F
-    def display_temp (temp):
+    def display_temp (self, temp):
         if (type(temp) is int and str(temp).length <= 3):
             temp_string = str(temp)
 
