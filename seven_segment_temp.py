@@ -13,7 +13,7 @@ class SevenSegmentTemp:
     def __convert_message_to_digit_values(self, message):
         converted_message = []
         for char in message:
-            converted_message.append(DIGIT_VALUES.get(str(digit).upper(), 0x00))
+            converted_message.append(DIGIT_VALUES.get(str(char).upper(), 0x00))
 
         return converted_message
 
