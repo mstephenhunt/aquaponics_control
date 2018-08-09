@@ -46,9 +46,7 @@ class SevenSegmentTemp:
         # that it goes fully off screen when finished
         message_with_spaces = message + '    '
 
-        self.__convert_message_to_digit_values(message_with_spaces)
-
-        return message_with_spaces
+        return self.__convert_message_to_digit_values(message_with_spaces)
         # for char in message_with_spaces:
         #     current_chars.append(char)
 
