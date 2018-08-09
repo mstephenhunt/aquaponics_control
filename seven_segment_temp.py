@@ -9,7 +9,7 @@ class SevenSegmentTemp:
     # fourth segment on the display shows the letter F
     def display_temp (self, temp):
         if (type(temp) is int and len(str(temp)) <= 3):
-            temp_string = str(temp)
+            temp_string = str(temp) + 'F'
 
             self.display.clear()
             self.display.print_number_str(temp_string)
