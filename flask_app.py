@@ -1,7 +1,7 @@
 from flask import Flask, redirect, Markup, Flask, render_template
 from config import ConfigClass
 from forms import PumpConfigForm
-# from temp_logger import TempLogger
+from temp_logger import TempLogger
 
 # Globals
 app = Flask(__name__)
