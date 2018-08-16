@@ -15,6 +15,8 @@ class TempLogger:
 
         self.sensor = MAX31855.MAX31855(__clk_pin, __cs_pin, __do_pin)
 
+        self.current_reading = ''
+
 
     def __c_to_f (self, c):
         return c * 9.0 / 5.0 + 32.0
@@ -41,7 +43,14 @@ class TempLogger:
 
         eastern = timezone('US/Eastern')
         formatted_timestamp = datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S')
-        current_reading = "{ \"time\": " + formatted_timestamp + ",\"probe\": " + str(probe_temp) + ",\"ambient\": " + str(ambient_temp) + "}\n"
+        current_reading = {
+            "time": formatted_timestamp,
+            "probe": probe_temp,
+            "ambient": ambient_temp
+        }
+
+        # current_reading = "{ \"time\": " + formatted_timestamp + ",\"probe\": " + str(probe_temp) + ",\"ambient\": " + str(ambient_temp) + "}\n"
+        self.current_reading = current_reading
 
         return current_reading
 
@@ -51,5 +60,7 @@ class TempLogger:
 
         while(True):
             current_reading = self.get_temperature_readings()
-            log_file.write(current_reading)
+            as_str = str(current_reading)
+
+            log_file.write(as_str)
             time.sleep(self.logging_period)
