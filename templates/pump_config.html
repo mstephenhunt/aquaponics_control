@@ -1,0 +1,30 @@
+{% block main %}
+
+    <h1>Pump Config</h1>
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.pump_on_time.label }}
+        {{ form.pump_on_time(size=32) }}
+
+        {% for error in form.pump_on_time.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.pump_off_time.label }}
+        {{ form.pump_off_time(size=32) }}
+
+        {% for error in form.pump_on_time.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.submit() }}
+      </p>
+    </form>
+    
+
+    {{ table }}
+
+{% endblock main %}
