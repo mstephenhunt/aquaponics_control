@@ -4,18 +4,26 @@ from flask import Flask
 from flask import render_template
 app = Flask(__name__)
 
-from temp_logger import TempLogger
+# from temp_logger import TempLogger
 
 sample_period = 60 # sample period for sensor 60 seconds
 # relay_pin = 1 # figure out what this is
 
 # Have the logger log temps in the background
-logger = TempLogger(sample_period)
-logger.log_temperature()
+# logger = TempLogger(sample_period)
+# logger.log_temperature()
+
+pump_on_time = 1
+pump_off_time = 19
 
 @app.route("/")
 def root():
-    return "yo"
+    basic_info = ("<ul>" + 
+                    "<li><b>Pump On Time:</b> " + str(pump_on_time) + " minutes</li>" +
+                     "<li><b>Pump Off Time:</b> " + str(pump_off_time) + " minutes</li>" +
+                 "</ul>")
+
+    return basic_info
 
 @app.route("/charts")
 def charts():
