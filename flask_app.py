@@ -3,7 +3,16 @@ from flask import Markup
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
- 
+
+from temp_logger import TempLogger
+
+sample_period = 60 # sample period for sensor 60 seconds
+# relay_pin = 1 # figure out what this is
+
+# Have the logger log temps in the background
+logger = TempLogger(sample_period)
+logger.log_temperature()
+
 @app.route("/")
 def chart():
     labels = ["January","February","March","April","May","June","July","August"]
