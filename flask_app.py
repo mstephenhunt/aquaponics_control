@@ -11,8 +11,8 @@ sample_period = 60 # sample period for temp sensor 60 seconds
 # relay_pin = 1 # figure out what this is
 
 # Have the logger log temps in the background
-# logger = TempLogger(sample_period)
-# logger.log_temperature()
+logger = TempLogger(sample_period)
+logger.log_temperature()
 
 print(ConfigClass)
 app.config.from_object(ConfigClass)
@@ -24,6 +24,8 @@ def root():
     basic_info = ("<ul>" + 
                     "<li><b>Pump On Time:</b> " + str(pump_on_time) + " minutes</li>" +
                      "<li><b>Pump Off Time:</b> " + str(pump_off_time) + " minutes</li>" +
+                     "<li><b>Probe Temperature:</b> " + str(logger.current_reading['probe']) + " F</li>" +
+                     "<li><b>Ambient Temperature:</b> " + str(logger.current_reading['ambient']) + " F</li>" +
                  "</ul>")
 
     return basic_info
