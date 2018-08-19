@@ -1,6 +1,6 @@
 Requires Installation of Adafruit Libraries:
 ```
-$ git clone https://github.com/adafruit/Adafruit_Python_LED
+$ git clone https://github.com/adafruit/Adafruit_Python_LED_Backpack
 $ cd Adafruit_Python_LED_Backpack
 $ sudo python setup.py install
 
