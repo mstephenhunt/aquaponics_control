@@ -5,7 +5,7 @@ DIGIT_VALUES = SevenSegment.DIGIT_VALUES
 DIGIT_VALUES['U'] = 0x3e # 62
 DIGIT_VALUES['T'] = 0x78 # 120
 
-class SevenSegment:
+class CustomSevenSegment:
     def __init__ (self):
         self.display = SevenSegment.SevenSegment()
         self.display.begin()
