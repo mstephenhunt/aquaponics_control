@@ -7,4 +7,5 @@ logger = TempLogger(1)
 temp_info = logger.get_temperature_readings()
 probe_temp = int(temp_info['probe'])
 
-print(probe_temp)
+display = SevenSegment()
+display.display_temp(probe_temp)
