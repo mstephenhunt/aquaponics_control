@@ -9,19 +9,19 @@ app = Flask(__name__)
 pump_on_time = 1
 pump_off_time = 19
 sample_period = 60 # sample period for temp sensor 60 seconds
-# relay_pin = 1 # figure out what this is
+relay_pin = 21
 
 # Have the logger log temps in the background
 logger = TempLogger(sample_period)
-thr = threading.Thread(target=logger.log_temperature, args=(), kwargs={})
-thr.start()
-print("should be logging in background")
+# thr = threading.Thread(target=logger.log_temperature, args=(), kwargs={})
+# thr.start()
+# print("should be logging in background")
 
 app.config.from_object(ConfigClass)
 
 @app.route("/")
 def root():
-    print("root on time: " + str(pump_on_time))
+    logger.get_temperature_readings()
 
     basic_info = ("<ul>" + 
                     "<li><b>Pump On Time:</b> " + str(pump_on_time) + " minutes</li>" +
