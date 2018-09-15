@@ -1,7 +1,7 @@
 from relay_control import RelayControl
 
 class Pump(RelayControl):
-    __init__(self, pin):
+    def __init__(self, pin):
         RelayControl.__init__(self, pin)
         self.on_interval = 0
         self.off_interval = 0
