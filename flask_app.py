@@ -2,16 +2,14 @@ from flask import Flask, redirect, Markup, Flask, render_template
 from config import ConfigClass
 from forms import PumpConfigForm
 from temp_logger import TempLogger
-from relay_control import RelayControl
+from pump import Pump
 
 # Globals
 app = Flask(__name__)
-pump_on_time = 1
-pump_off_time = 19
 sample_period = 60 # sample period for temp sensor 60 seconds
 relay_pin = 21
 
-pump = RelayControl(relay_pin)
+main_pump = Pump(relay_pin)
 logger = TempLogger(sample_period) # while this can pull down current temp, doesn't actively log
 
 app.config.from_object(ConfigClass)
@@ -21,8 +19,8 @@ def root():
     logger.get_temperature_readings()
 
     basic_info = ("<ul>" + 
-                    "<li><b>Pump On Time:</b> " + str(pump_on_time) + " minutes</li>" +
-                     "<li><b>Pump Off Time:</b> " + str(pump_off_time) + " minutes</li>" +
+                    "<li><b>Pump On Time:</b> " + str(main_pump.pump_on_time) + " minutes</li>" +
+                     "<li><b>Pump Off Time:</b> " + str(main_pump.pump_off_time) + " minutes</li>" +
                      "<li><b>Probe Temperature:</b> " + str(logger.current_reading['probe']) + " F</li>" +
                      "<li><b>Ambient Temperature:</b> " + str(logger.current_reading['ambient']) + " F</li>" +
                  "</ul>")
