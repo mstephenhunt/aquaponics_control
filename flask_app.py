@@ -2,7 +2,7 @@ from flask import Flask, redirect, Markup, Flask, render_template
 from config import ConfigClass
 from forms import PumpConfigForm
 from temp_logger import TempLogger
-import threading
+from relay_control import RelayControl
 
 # Globals
 app = Flask(__name__)
@@ -11,11 +11,8 @@ pump_off_time = 19
 sample_period = 60 # sample period for temp sensor 60 seconds
 relay_pin = 21
 
-# Have the logger log temps in the background
-logger = TempLogger(sample_period)
-# thr = threading.Thread(target=logger.log_temperature, args=(), kwargs={})
-# thr.start()
-# print("should be logging in background")
+pump = RelayControl(relay_pin)
+logger = TempLogger(sample_period) # while this can pull down current temp, doesn't actively log
 
 app.config.from_object(ConfigClass)
 
