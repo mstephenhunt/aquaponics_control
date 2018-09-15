@@ -19,8 +19,8 @@ def root():
     logger.get_temperature_readings()
 
     basic_info = ("<ul>" + 
-                    "<li><b>Pump On Time:</b> " + str(main_pump.pump_on_time) + " minutes</li>" +
-                     "<li><b>Pump Off Time:</b> " + str(main_pump.pump_off_time) + " minutes</li>" +
+                    "<li><b>Pump On Time:</b> " + str(main_pump.on_time) + " minutes</li>" +
+                     "<li><b>Pump Off Time:</b> " + str(main_pump.off_time) + " minutes</li>" +
                      "<li><b>Probe Temperature:</b> " + str(logger.current_reading['probe']) + " F</li>" +
                      "<li><b>Ambient Temperature:</b> " + str(logger.current_reading['ambient']) + " F</li>" +
                  "</ul>")
