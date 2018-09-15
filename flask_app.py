@@ -2,30 +2,25 @@ from flask import Flask, redirect, Markup, Flask, render_template
 from config import ConfigClass
 from forms import PumpConfigForm
 from temp_logger import TempLogger
-import threading
+from pump import Pump
 
 # Globals
 app = Flask(__name__)
-pump_on_time = 1
-pump_off_time = 19
 sample_period = 60 # sample period for temp sensor 60 seconds
-# relay_pin = 1 # figure out what this is
+relay_pin = 21
 
-# Have the logger log temps in the background
-logger = TempLogger(sample_period)
-thr = threading.Thread(target=logger.log_temperature, args=(), kwargs={})
-thr.start()
-print("should be logging in background")
+main_pump = Pump(relay_pin)
+logger = TempLogger(sample_period) # while this can pull down current temp, doesn't actively log
 
 app.config.from_object(ConfigClass)
 
 @app.route("/")
 def root():
-    print("root on time: " + str(pump_on_time))
+    logger.get_temperature_readings()
 
     basic_info = ("<ul>" + 
-                    "<li><b>Pump On Time:</b> " + str(pump_on_time) + " minutes</li>" +
-                     "<li><b>Pump Off Time:</b> " + str(pump_off_time) + " minutes</li>" +
+                    "<li><b>Pump On Time:</b> " + str(main_pump.on_time) + " minutes</li>" +
+                     "<li><b>Pump Off Time:</b> " + str(main_pump.off_time) + " minutes</li>" +
                      "<li><b>Probe Temperature:</b> " + str(logger.current_reading['probe']) + " F</li>" +
                      "<li><b>Ambient Temperature:</b> " + str(logger.current_reading['ambient']) + " F</li>" +
                  "</ul>")
