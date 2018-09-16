@@ -26,7 +26,9 @@ while (True):
     display.display_temp(probe_temp)
 
     if (counter < seconds_on):
-    
+        pump.enable_relay()
+    else:
+        pump.disable_relay()
 
     counter += 1
     counter %= total_loop_time
