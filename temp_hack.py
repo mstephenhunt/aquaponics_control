@@ -12,12 +12,21 @@ pump = RelayControl(relay_pin)
 logger = TempLogger(1)
 display = CustomSevenSegment()
 
-pump.enable_relay()
+minutes_on = 15
+minutes_off = 5
+seconds_on = minutes_on * 60
+seconds_off = minutes_off * 60
+total_loop_time = seconds_on + seconds_off
 
+counter = 0
 while (True):
-    time.sleep(0.25)
-
+    # Display probe temp every second
     temp_info = logger.get_temperature_readings()
     probe_temp = int(temp_info['probe'])
     display.display_temp(probe_temp)
 
+    if (counter < seconds_on):
+    
+
+    counter += 1
+    counter %= total_loop_time
