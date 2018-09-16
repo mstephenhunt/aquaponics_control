@@ -32,3 +32,5 @@ while (True):
 
     counter += 1
     counter %= total_loop_time
+
+    time.sleep(1)
