@@ -1,3 +1,4 @@
+
 from seven_segment import CustomSevenSegment
 from temp_logger import TempLogger
 from relay_control import RelayControl
@@ -12,12 +13,12 @@ pump = RelayControl(relay_pin)
 logger = TempLogger(1)
 display = CustomSevenSegment()
 
-#minutes_on = 15
-#minutes_off = 5
-#seconds_on = minutes_on * 60
-#seconds_off = minutes_off * 60
-seconds_on = 10
-seconds_off = 20
+minutes_on = 5
+minutes_off = 15
+seconds_on = minutes_on * 60
+seconds_off = minutes_off * 60
+# seconds_on = 10
+# seconds_off = 20
 total_loop_time = seconds_on + seconds_off
 
 counter = 0
