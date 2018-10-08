@@ -12,18 +12,29 @@ pump = RelayControl(relay_pin)
 logger = TempLogger(1)
 display = CustomSevenSegment()
 
-minutes_on = 15
-minutes_off = 5
-seconds_on = minutes_on * 60
-seconds_off = minutes_off * 60
+#minutes_on = 15
+#minutes_off = 5
+#seconds_on = minutes_on * 60
+#seconds_off = minutes_off * 60
+seconds_on = 10
+seconds_off = 20
 total_loop_time = seconds_on + seconds_off
 
 counter = 0
 while (True):
-    # Display probe temp every second
-    temp_info = logger.get_temperature_readings()
-    probe_temp = int(temp_info['probe'])
-    display.display_temp(probe_temp)
+    if (counter == 0):
+        display.marquee_message('eat beef')
+
+    try:
+        # Display probe temp every second
+        temp_info = logger.get_temperature_readings()
+
+        print(temp_info)
+
+        probe_temp = int(temp_info['probe'])
+        display.display_temp(probe_temp)
+    except Exception as e:
+        print(e)
 
     if (counter < seconds_on):
         pump.enable_relay()
@@ -34,3 +45,4 @@ while (True):
     counter %= total_loop_time
 
     time.sleep(1)
+
