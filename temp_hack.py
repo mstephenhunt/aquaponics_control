@@ -3,7 +3,7 @@ from seven_segment import CustomSevenSegment
 from temp_logger import TempLogger
 from relay_control import RelayControl
 import time
-import datetime
+from datetime import datetime
 
 # {'probe': 91.4, 'ambient': 92.075, 'time': '2018-09-03 16:02:28'}
 
@@ -13,13 +13,9 @@ pump = RelayControl(relay_pin)
 logger = TempLogger(1)
 display = CustomSevenSegment()
 
-minutes_on = 5
-minutes_off = 15
-seconds_on = minutes_on * 60
-seconds_off = minutes_off * 60
-# seconds_on = 10
-# seconds_off = 20
-total_loop_time = seconds_on + seconds_off
+total_loop_time = 15
+on_after_time = datetime(2018, 1, 1, 1, 3, 0).time()
+on_before_time = datetime(2018, 1, 1, 1, 11, 0).time()
 
 counter = 0
 while (True):
@@ -37,7 +33,8 @@ while (True):
     except Exception as e:
         print(e)
 
-    if (counter < seconds_on):
+    current_time = datetime.now().time()
+    if (current_time > on_after_time and on_before_time > current_time):
         pump.enable_relay()
     else:
         pump.disable_relay()
